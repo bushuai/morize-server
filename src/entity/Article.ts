@@ -14,10 +14,10 @@ export class Article {
     @Column('text')
     content: string;
 
-    @Column()
+    @Column({ default: 0 })
     viewCount: number;
 
-    @Column()
+    @Column({ default: false })
     isPublish: boolean;
 
     @OneToMany(type => Category, category => category.article)

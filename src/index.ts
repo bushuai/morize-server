@@ -2,12 +2,14 @@ import "reflect-metadata"
 import * as Koa from 'koa'
 import * as bodyParser from 'koa-bodyparser'
 import * as Router from 'koa-router'
+import * as Logger from 'koa-logger'
 import { createConnection } from "typeorm"
 import { Routes } from './routes'
 
 createConnection().then(async connection => {
     // create koa app
     const app = new Koa()
+    app.use(Logger())
     const router = new Router()
 
     // register all application routes

@@ -1,7 +1,7 @@
 import { Context } from 'koa'
 import { getManager, Like } from 'typeorm'
 import { Article } from '../entity/Article'
-
+import STATUS from '../enums/status'
 
 export async function fetchArticles (context: Context) {
   const articleRepository = getManager().getRepository(Article)
@@ -16,4 +16,14 @@ export async function fetchArticle (context: Context) {
   context.body = article
 }
 
-export async function saveArticle (context: Context) {}
+export async function saveArticle (context: Context) {
+  const articleRepository = getManager().getRepository(Article)
+  const { title, content } = context.request.body
+  const article = await articleRepository.save({ title, content })
+  
+  context.body = {
+    code: STATUS.SUCCESS,
+    data: article,
+    message: 'success'
+  }
+}

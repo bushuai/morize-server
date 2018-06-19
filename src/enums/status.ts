@@ -1,0 +1,7 @@
+export default {
+    SUCCESS: 1001,
+    FAILED: 1002,
+    INVALID_TOKEN: 1003,
+    INVALID_USER: 1004,
+    UNKNOWN_ERROR: 1005
+}
